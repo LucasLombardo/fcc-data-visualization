@@ -1,0 +1,21 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: var(--inter);
+}
+
+main {
+  width: fit-content;
+  margin-bottom: 20vh;
+  border: 1px solid black;
+  padding: 1em 2em;
+}
+
+.toggle-tests {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  font-size: 0.5em;
+}
