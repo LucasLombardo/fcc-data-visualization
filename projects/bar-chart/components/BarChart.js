@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 
-const margin = { top: 10, right: 20, bottom: 30, left: 30 };
+const margin = { top: 10, right: 20, bottom: 30, left: 50 };
 
 export default class BarChart {
   constructor({ height, width, data, ref }) {
@@ -28,7 +28,19 @@ export default class BarChart {
     canvas
       .append("g")
       .attr("transform", "translate(" + 0 + ", " + this.height + ")")
+      .attr("id", "x-axis")
       .call(xAxisTicks);
+
+    // Y Axis
+    const y = d3
+      .scaleLinear()
+      .domain([0, d3.max(this.data, (d) => d[1])])
+      .range([this.height, 0]);
+    const yAxisTicks = d3.axisLeft(y);
+    canvas
+      .append("g")
+      .attr("id", "y-axis")
+      .call(yAxisTicks);
   }
 
   unmount() {
