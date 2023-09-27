@@ -37,10 +37,26 @@ export default class BarChart {
       .domain([0, d3.max(this.data, (d) => d[1])])
       .range([this.height, 0]);
     const yAxisTicks = d3.axisLeft(y);
-    canvas
-      .append("g")
-      .attr("id", "y-axis")
-      .call(yAxisTicks);
+    canvas.append("g").attr("id", "y-axis").call(yAxisTicks);
+    const x = d3
+      .scaleBand() //scales the size of the bars and padding
+      .domain(this.data)
+      .padding(0)
+      .range([0, this.width]);
+
+    // Bars
+    this.svg
+      .selectAll("rect")
+      .data(this.data)
+      .enter()
+      .append("rect")
+      .attr("class", "bar")
+      .attr("data-date", (d) => d[0])
+      .attr("data-gdp", (d) => d[1])
+      .attr("width", (d) => x.bandwidth())
+      .attr("x", (d) => x(d) + margin.left)
+      .attr("height", (d) => this.height - y(d[1]))
+      .attr("y", (d) => margin.top + y(d[1]));
   }
 
   unmount() {
