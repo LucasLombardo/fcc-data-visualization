@@ -11,6 +11,7 @@ const BarChartContainer = () => {
       height: 400,
       width: 700,
       data: data,
+      // .slice(0,30),
       ref: containerRef.current,
     });
 

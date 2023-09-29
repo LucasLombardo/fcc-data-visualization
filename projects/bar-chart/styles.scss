@@ -29,8 +29,26 @@ h1 {
 
 .content {
   border: 1px solid #ccc;
-background: white;
+  background: white;
   svg {
     display: block;
   }
+}
+
+.bar {
+  fill: cyan;
+  border: 1px solid black;
+  stroke: black;
+  stroke-width: 1px;
+}
+
+.bar-2 {
+  fill: lightblue;
+}
+
+#tooltip {
+  fill: whitesmoke;
+  border: 1px solid black;
+  stroke: black;
+  stroke-width: 1px;
 }
