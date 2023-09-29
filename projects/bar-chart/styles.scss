@@ -22,9 +22,16 @@ main {
   font-size: 0.5em;
 }
 
-h1 {
-  margin: 0 0 0.4em;
+h2 {
+  margin: 0;
   text-align: center;
+  font-size: 0.8em;
+}
+
+h3 {
+  font-size: 0.8em;
+  text-align: center;
+  margin: 0.4em 0 1em;
 }
 
 .content {
@@ -36,9 +43,8 @@ h1 {
 }
 
 .bar {
-  fill: cyan;
-  border: 1px solid black;
-  stroke: black;
+  fill: darkslateblue;
+  stroke: darken(darkslateblue, 20%);
   stroke-width: 1px;
 }
 

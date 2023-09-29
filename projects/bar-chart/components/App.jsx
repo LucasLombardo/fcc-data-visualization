@@ -3,7 +3,8 @@ import ToggleTests from "./ToggleTests";
 
 const App = () => (
   <main>
-    <h1 id="title">US GDP Bar Chart</h1>
+    <h2 id="title">United States Gross Domestic Product</h2>
+    <h3>(Units in USD Billions, 1947-2015)</h3>
     <section className="content">
       <BarChartContainer />
     </section>

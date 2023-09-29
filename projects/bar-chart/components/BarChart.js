@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import { dateToQuarter, formatNumBillions  } from "../../../shared/utils";
 
 const margin = { top: 10, right: 20, bottom: 30, left: 50 };
 
@@ -12,8 +13,8 @@ export default class BarChart {
     this.tooltipLine = this.svg.append("line");
     this.canvas = this.svg.append("g");
     this.tooltip = this.svg.append("g");
+    this.tooltipRect = this.tooltip.append("rect");
     this.tooltipText = this.tooltip.append("text");
-    this.mask = this.svg.append("rect");
   }
 
   update() {
@@ -26,7 +27,7 @@ export default class BarChart {
       tooltipText,
       canvas,
       tooltip,
-      mask,
+      tooltipRect
     } = this;
 
     svg
@@ -37,12 +38,6 @@ export default class BarChart {
       "transform",
       "translate(" + margin.left + "," + margin.top + ")"
     );
-
-    mask
-      .attr("width", width)
-      .attr("height", height)
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-      .attr("opacity", 0);
 
     // X Axis
     const dates = data.map((d) => new Date(d[0]));
@@ -66,6 +61,10 @@ export default class BarChart {
     canvas.append("g").attr("id", "y-axis").call(yAxisTicks);
     const x = d3.scaleBand().domain(data).padding(0).range([0, width]);
 
+    const setTooltipOpacity = (n) => {
+      tooltipLine.attr("opacity", n);
+      tooltip.attr("opacity", n);
+    };
     // Visible Bars
     const centerPoints = [];
     canvas
@@ -82,44 +81,37 @@ export default class BarChart {
         return x(d);
       })
       .attr("height", (d) => height - y(d[1]))
-      .attr("y", (d) => y(d[1]));
+      .attr("y", (d) => y(d[1]))
+      .on("mouseover", function (event, d) {
+        setTooltipOpacity(1);
+        const [xHover] = d3.pointer(event);
+        const nearestCenterPoint = centerPoints.sort(
+          (a, b) => Math.abs(xHover - a.point) - Math.abs(xHover - b.point)
+        )[0];
 
-    mask.on("mousemove", (event) => {
-      const [xHover] = d3.pointer(event);
-      const nearestCenterPoint = centerPoints.sort(
-        (a, b) => Math.abs(xHover - a.point) - Math.abs(xHover - b.point)
-      )[0];
-      console.log(nearestCenterPoint);
-      const centerX = margin.left + nearestCenterPoint.point;
+        const centerX = margin.left + nearestCenterPoint.point;
+        tooltipLine.attr("x1", centerX).attr("x2", centerX);
+        const tooltipX = Math.max(
+          Math.min(centerX, width + margin.left - 30),
+          margin.left + 30
+        );
+        tooltip
+          .attr("transform", `translate(${tooltipX - 50}, 20)`)
+          .attr("data-date", d[0])
+          .attr("position", "relative")
 
-      tooltipLine.attr("x1", centerX).attr("x2", centerX);
-
-      const tooltipX = Math.max(
-        Math.min(centerX, width + margin.left - 30),
-        margin.left + 30
-      );
-      tooltip
-        .attr("transform", `translate(${tooltipX - 50}, 20)`)
-        .attr("data-date", nearestCenterPoint.d[0]);
-      console.log(nearestCenterPoint.d[0]);
-      tooltipText
-        .text(nearestCenterPoint.d[0])
-        .attr("transform", `translate(40, 20)`);
-    });
-
-    mask.on("mouseout", () => {
-      tooltipLine.attr("opacity", 0);
-      tooltip.attr("opacity", 0);
-    });
-
-    mask.on("mouseover", () => {
-      tooltipLine.attr("opacity", 1);
-      tooltip.attr("opacity", 1);
-    });
+        tooltipText.html(`
+          <tspan dominant-baseline="middle" text-anchor="middle" x="52" y="15">${dateToQuarter(d[0])}</tspan>
+          <tspan dominant-baseline="middle" text-anchor="middle" x="52" y="35" font-size="0.8em">$${formatNumBillions(d[1])}B USD</tspan>
+        `)
+      })
+      .on("mouseout", function () {
+        setTooltipOpacity(0);
+      });
 
     tooltip.attr("transform", "translate(-400,0)").attr("id", "tooltip");
 
-    tooltip.append("rect").attr("width", 100).attr("height", 50);
+    tooltipRect.attr("width", 100).attr("height", 50);
 
     tooltipLine
       .attr("x1", 100)
