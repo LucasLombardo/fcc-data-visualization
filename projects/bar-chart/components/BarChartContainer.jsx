@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from "react";
-import BarChart from "./BarChart";
+import { useEffect, useRef } from "react";
 import { data } from "../../../data/quarterly-gdp-usa.json";
+import TableContainer from "./TableContainer";
+import BarChart from "./BarChart";
 
 const BarChartContainer = () => {
   const containerRef = useRef(null);
@@ -11,16 +12,20 @@ const BarChartContainer = () => {
       height: 400,
       width: 700,
       data: data,
-      // .slice(0,30),
       ref: containerRef.current,
     });
 
     chartRef.current.update();
 
     return () => chartRef.current.unmount();
-  }, []);
+  }, [])
 
-  return <div ref={containerRef}></div>;
+  return (
+    <>
+      <div ref={containerRef}></div>
+      <TableContainer data={data} />
+    </>
+  );
 };
 
 export default BarChartContainer;

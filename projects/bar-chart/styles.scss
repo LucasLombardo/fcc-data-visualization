@@ -58,3 +58,40 @@ h3 {
   stroke: black;
   stroke-width: 1px;
 }
+
+table {
+  border-spacing:0;
+  border-collapse: collapse;
+  font-size: 0.6em; 
+  margin: 0 auto 1em;
+
+  td, th {
+    border: 1px solid black;
+    font-weight: 300;
+  }
+  td {
+    width: 1.2em;
+
+    div {
+      left: calc(50% - 0.5em);
+      padding: 0.6em 0;
+      line-height: 1;
+      padding-top: 0.5rem;
+      position: relative;
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+      white-space: nowrap;
+      -webkit-writing-mode: vertical-rl;
+      writing-mode: vertical-rl;
+    }
+  }
+  th {
+    width: 9em;
+    background: darkslateblue;
+    color: white;
+  }
+}
+
+text {
+  fill: rgba(0,0,0,0.8);
+}

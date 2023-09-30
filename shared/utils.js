@@ -6,9 +6,17 @@ const dateToQuarter = (dateString) => {
   return `${quarterMap[+month]} ${year}`;
 };
 
-const formatNumBillions  = (n) => {
+const formatNumBillions = (n) => {
   const rounded = Math.round(n);
   return rounded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-export { sleep, dateToQuarter, formatNumBillions  };
+const chunkArray = (arr, chunkLength) => {
+  return arr.reduce((a, c, i) => {
+    if (i % chunkLength === 0) a.push([]);
+    a[a.length - 1].push(c);
+    return a;
+  }, []);
+};
+
+export { sleep, dateToQuarter, formatNumBillions, chunkArray };
