@@ -1,14 +1,16 @@
 import BarChartContainer from "./BarChartContainer";
-import ToggleTests from "./ToggleTests";
 
 const App = () => (
   <main>
-    <h2 id="title">United States Gross Domestic Product</h2>
-    <h3>(Units in USD Billions, 1947-2015)</h3>
-    <section className="content">
-      <BarChartContainer />
+    <h1>Data Visualization Project 1</h1>
+    <p>Visualize Data with a Bar Chart</p>
+    <section className="chart-section">
+      <h2 id="title">United States Gross Domestic Product</h2>
+      <p>(Units in USD Billions, 1947-2015)</p>
+      <div className="content">
+        <BarChartContainer />
+      </div>
     </section>
-    <ToggleTests testId="bar-chart" />
   </main>
 );
 

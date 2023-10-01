@@ -11,7 +11,7 @@ const ToggleTests = ({ testId }) => {
       try {
         await sleep(100);
         const root = document.querySelector(
-          "#fcc_test_suite_wrapper",
+          "#fcc_test_suite_wrapper"
         ).shadowRoot;
         // expand fcc test menu if not open
         if (!root.querySelector(".fcc_hamburger.transform_top")) {
@@ -28,8 +28,11 @@ const ToggleTests = ({ testId }) => {
 
   return (
     <>
-      <button className="toggle-tests" onClick={onClick}>
-        Toggle FCC Tests
+      <button
+        className={`toggle-tests ${displayed ? "active" : ""}`}
+        onClick={onClick}
+      >
+        Toggle FCC Tests {displayed ? "Off" : "On"}
       </button>
       <style>
         {`#fcc_test_suite_wrapper {

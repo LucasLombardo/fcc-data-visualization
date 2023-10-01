@@ -1,7 +1,6 @@
 import { chunkArray } from "../../../shared/utils";
 
 const Table = ({ data, chunkLength }) => {
-    console.log({data, chunkLength})
   const chunks = chunkArray(data, chunkLength);
 
   return (
@@ -16,7 +15,6 @@ const Table = ({ data, chunkLength }) => {
                   <div>{date}</div>
                 </td>
               ))}
-              .
             </tr>
             <tr>
               <th>GDP USD Billions</th>
