@@ -3,13 +3,21 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "parcel ./projects/bar-chart/index.html",
+    "start": "parcel",
     "clean": "rimraf ./dist .parcel-cache",
-    "build": "parcel build ./projects/bar-chart/index.html --no-scope-hoist"
+    "build": "parcel build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "source": [
+    "./projects/index.html",
+    "./projects/bar-chart/index.html",
+    "./projects/choropleth-map/index.html",
+    "./projects/heat-map/index.html",
+    "./projects/scatterplot-graph/index.html",
+    "./projects/treemap-diagram/index.html"
+  ],
   "devDependencies": {
     "@parcel/transformer-sass": "^2.9.3",
     "parcel": "^2.9.3",

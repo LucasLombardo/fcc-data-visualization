@@ -1,5 +1,6 @@
 import * as d3 from "d3";
-import { dateToQuarter, formatNumBillions  } from "../../../shared/utils";
+import { dateToQuarter, formatNumBillions } from "../../../shared/utils";
+d3; // use full d3 import after import to avoid build issue caused by automatic tree shaking
 
 const margin = { top: 10, right: 20, bottom: 30, left: 50 };
 
@@ -27,7 +28,7 @@ export default class BarChart {
       tooltipText,
       canvas,
       tooltip,
-      tooltipRect
+      tooltipRect,
     } = this;
 
     svg
@@ -98,12 +99,16 @@ export default class BarChart {
         tooltip
           .attr("transform", `translate(${tooltipX - 50}, 20)`)
           .attr("data-date", d[0])
-          .attr("position", "relative")
+          .attr("position", "relative");
 
         tooltipText.html(`
-          <tspan dominant-baseline="middle" text-anchor="middle" x="52" y="15">${dateToQuarter(d[0])}</tspan>
-          <tspan dominant-baseline="middle" text-anchor="middle" x="52" y="35" font-size="0.8em">$${formatNumBillions(d[1])}B USD</tspan>
-        `)
+          <tspan dominant-baseline="middle" text-anchor="middle" x="52" y="15">${dateToQuarter(
+            d[0]
+          )}</tspan>
+          <tspan dominant-baseline="middle" text-anchor="middle" x="52" y="35" font-size="0.8em">$${formatNumBillions(
+            d[1]
+          )}B USD</tspan>
+        `);
       })
       .on("mouseout", function () {
         setTooltipOpacity(0);
