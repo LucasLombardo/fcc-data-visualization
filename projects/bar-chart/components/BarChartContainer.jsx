@@ -18,7 +18,7 @@ const BarChartContainer = () => {
     chartRef.current.update();
 
     return () => chartRef.current.unmount();
-  }, [])
+  }, []);
 
   return (
     <>

@@ -37,7 +37,7 @@ export default class BarChart {
 
     canvas.attr(
       "transform",
-      "translate(" + margin.left + "," + margin.top + ")"
+      "translate(" + margin.left + "," + margin.top + ")",
     );
 
     // X Axis
@@ -76,7 +76,7 @@ export default class BarChart {
       .attr("class", "bar")
       .attr("data-date", (d) => d[0])
       .attr("data-gdp", (d) => d[1])
-      .attr("width", (d) => x.bandwidth())
+      .attr("width", x.bandwidth)
       .attr("x", (d) => {
         centerPoints.push({ point: x(d) + x.bandwidth() / 2, d });
         return x(d);
@@ -87,14 +87,14 @@ export default class BarChart {
         setTooltipOpacity(1);
         const [xHover] = d3.pointer(event);
         const nearestCenterPoint = centerPoints.sort(
-          (a, b) => Math.abs(xHover - a.point) - Math.abs(xHover - b.point)
+          (a, b) => Math.abs(xHover - a.point) - Math.abs(xHover - b.point),
         )[0];
 
         const centerX = margin.left + nearestCenterPoint.point;
         tooltipLine.attr("x1", centerX).attr("x2", centerX);
         const tooltipX = Math.max(
           Math.min(centerX, width + margin.left - 30),
-          margin.left + 30
+          margin.left + 30,
         );
         tooltip
           .attr("transform", `translate(${tooltipX - 50}, 20)`)
@@ -103,10 +103,10 @@ export default class BarChart {
 
         tooltipText.html(`
           <tspan dominant-baseline="middle" text-anchor="middle" x="52" y="15">${dateToQuarter(
-            d[0]
+            d[0],
           )}</tspan>
           <tspan dominant-baseline="middle" text-anchor="middle" x="52" y="35" font-size="0.8em">$${formatNumBillions(
-            d[1]
+            d[1],
           )}B USD</tspan>
         `);
       })

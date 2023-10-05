@@ -4,8 +4,11 @@
   "description": "",
   "scripts": {
     "start": "parcel",
+    "dev": "parcel",
+    "build": "parcel build",
     "clean": "rimraf ./dist .parcel-cache",
-    "build": "parcel build"
+    "lint": "eslint ./projects",
+    "format": "prettier ./projects ./data --write"
   },
   "keywords": [],
   "author": "",
@@ -20,9 +23,13 @@
   ],
   "devDependencies": {
     "@parcel/transformer-sass": "^2.9.3",
+    "eslint": "^8.50.0",
+    "eslint-plugin-react": "^7.33.2",
     "parcel": "^2.9.3",
+    "prettier": "^3.0.3",
     "process": "^0.11.10",
-    "rimraf": "^5.0.5"
+    "rimraf": "^5.0.5",
+    "husky": "^8.0.0"
   },
   "dependencies": {
     "d3": "^7.8.5",
