@@ -36,14 +36,14 @@ export default class BarChart {
         "viewBox",
         `0 0 ${width + margin.left + margin.right} ${
           height + margin.top + margin.bottom
-        }`
+        }`,
       )
       .attr("role", "img")
       .attr("aria-labelledby", "gdp-chart-alt");
 
     canvas.attr(
       "transform",
-      "translate(" + margin.left + "," + margin.top + ")"
+      "translate(" + margin.left + "," + margin.top + ")",
     );
 
     // X Axis
@@ -93,13 +93,13 @@ export default class BarChart {
         setTooltipOpacity(1);
         const [xHover] = d3.pointer(event);
         const nearestCenterPoint = centerPoints.sort(
-          (a, b) => Math.abs(xHover - a.point) - Math.abs(xHover - b.point)
+          (a, b) => Math.abs(xHover - a.point) - Math.abs(xHover - b.point),
         )[0];
         const centerX = margin.left + nearestCenterPoint.point;
         tooltipLine.attr("x1", centerX).attr("x2", centerX);
         const tooltipX = Math.max(
           Math.min(centerX, width + margin.left - 30),
-          margin.left + 30
+          margin.left + 30,
         );
         tooltip
           .attr("transform", `translate(${tooltipX - 50}, 20)`)
@@ -108,10 +108,10 @@ export default class BarChart {
 
         tooltipText.html(`
           <tspan dominant-baseline="middle" text-anchor="middle" x="52" y="15">${dateToQuarter(
-            d[0]
+            d[0],
           )}</tspan>
           <tspan dominant-baseline="middle" text-anchor="middle" x="52" y="35" font-size="0.8em">$${formatNumBillions(
-            d[1]
+            d[1],
           )}B USD</tspan>
         `);
       })
