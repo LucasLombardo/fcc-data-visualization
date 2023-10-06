@@ -31,12 +31,15 @@ export default class BarChart {
       tooltipRect,
     } = this;
 
-    svg.attr(
-      "viewBox",
-      `0 0 ${width + margin.left + margin.right} ${
-        height + margin.top + margin.bottom
-      }`,
-    );
+    svg
+      .attr(
+        "viewBox",
+        `0 0 ${width + margin.left + margin.right} ${
+          height + margin.top + margin.bottom
+        }`,
+      )
+      .attr("role", "img")
+      .attr("aria-labelledby", "gdp-chart-alt");
 
     canvas.attr(
       "transform",
