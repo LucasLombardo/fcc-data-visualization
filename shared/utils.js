@@ -19,4 +19,8 @@ const chunkArray = (arr, chunkLength) => {
   }, []);
 };
 
-export { sleep, dateToQuarter, formatNumBillions, chunkArray };
+const domLoaded = () => new Promise((resolve) =>
+  document.addEventListener("DOMContentLoaded", resolve)
+);
+
+export { sleep, dateToQuarter, formatNumBillions, chunkArray, domLoaded };
