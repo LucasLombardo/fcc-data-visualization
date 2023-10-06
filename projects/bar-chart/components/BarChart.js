@@ -31,9 +31,12 @@ export default class BarChart {
       tooltipRect,
     } = this;
 
-    svg
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom);
+    svg.attr(
+      "viewBox",
+      `0 0 ${width + margin.left + margin.right} ${
+        height + margin.top + margin.bottom
+      }`,
+    );
 
     canvas.attr(
       "transform",
