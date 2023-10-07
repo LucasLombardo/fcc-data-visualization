@@ -46,6 +46,24 @@ h1 + p {
   }
 }
 
+.circle {
+  stroke-width: 1px;
+  stroke: black;
+}
+
+.circle--doping {
+  fill: rgba(213, 094, 000, 0.8);
+}
+
+#striped-fill path {
+  stroke: rgba(000, 158, 115, 0.8);
+  stroke-width: 2px;
+}
+
+.circle--nodope {
+  fill: url("#striped-fill");
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

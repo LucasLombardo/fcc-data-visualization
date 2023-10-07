@@ -19,7 +19,22 @@
       <p>Visualize Data with a Scatterplot Graph</p>
       <section class="chart-section">
         <div class="content">
-          <svg id="scatterplot-svg" viewBox="0 0 800 500" data-margins="20 20 40 60"></svg>
+          <svg
+            id="scatterplot-svg"
+            viewBox="0 0 800 500"
+            data-margins="20 20 40 60"
+          >
+            <defs>
+              <pattern
+                id="striped-fill"
+                patternUnits="userSpaceOnUse"
+                width="4"
+                height="4"
+              >
+                <path d="M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2" />
+              </pattern>
+            </defs>
+          </svg>
         </div>
       </section>
     </main>

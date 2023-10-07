@@ -39,4 +39,14 @@ d3; // use full d3 import to prevent tree shaking
     .range([0, width]);
   const xAxis = d3.axisBottom(xScale).tickFormat((t) => t.getFullYear());
   canvas.append("g").call(xAxis).attr("transform", `translate(0,${height})`);
+
+  canvas
+    .selectAll(".circle")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("class", d => `circle ${d.Doping ? "circle--doping" : "circle--nodope"}`)
+    .attr("cx", (d) => xScale(new Date(`${d.Year}-01-01T00:00:00.000Z`)))
+    .attr("cy", (d) => yScale(new Date(`2000-01-01T00:${d.Time}.000Z`)))
+    .attr("r", 8.5)
 })();
