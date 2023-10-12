@@ -21,11 +21,16 @@
         <div class="content">
           <h2 id="title">Doping in Professional Bicycle Racing</h2>
           <p>35 Fastest times up Alpe d'Huez</p>
+          <p class="sr-only">Table of data is available below the chart</p>
           <svg
             id="scatterplot-svg"
             viewBox="0 0 800 500"
             data-margins="20 20 40 60"
           >
+            <!-- prettier-ignore -->
+            <title>Scatterplot of 35 Fastest professional cycling times up Alpe d'Huez and whether the times were achieved with doping or not.</title>
+            <!-- prettier-ignore -->
+            <desc>Scatterplot shows a general trend of slower times from 1994 to 2014, with most of the fastest times being marked as having doping alllegations and most of the recent times without doping allegations being the slowest.</desc>
             <defs>
               <pattern
                 id="striped-fill"
@@ -37,6 +42,24 @@
               </pattern>
             </defs>
           </svg>
+
+          <button
+            id="data-table-toggle"
+            aria-controls="data-table"
+            aria-expanded="false"
+            role="button"
+          >
+            Show Data Table
+          </button>
+          <div
+            id="data-table"
+            role="region"
+            tabindex="-1"
+            style="display: none"
+          >
+            <h3>Data Table: Doping in Professional Bicycle Racing</h3>
+            <div id="data-table-container"></div>
+          </div>
         </div>
       </section>
     </main>

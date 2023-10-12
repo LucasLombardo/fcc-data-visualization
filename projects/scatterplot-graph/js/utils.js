@@ -29,3 +29,52 @@ export function splitSentance(text) {
     }
   }
 }
+
+export function createDataTable(data) {
+  const container = document.querySelector("#data-table-container");
+  container.innerHTML = `
+  <table>
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Time</th>
+        <th>Name</th>
+        <th>Nationality</th>
+        <th>Doping Accusations</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${data
+        .map((d) => {
+          return `<tr>
+        <td>${d.Year}</td>
+        <td>${d.Time}</td>
+        <td>${d.Name}</td>
+        <td>${d.Nationality}</td>
+        <td>${d.Doping}</td>
+        </tr>`;
+        })
+        .join("")}
+    </tbody>
+  </table>
+  `;
+}
+
+export function setDataTableToggleButton() {
+  const toggleBtn = document.querySelector("#data-table-toggle");
+  toggleBtn.addEventListener("click", () => {
+    const table = document.querySelector("#data-table");
+    const active = toggleBtn.classList.contains("active");
+    if (active) {
+      table.style.display = "none";
+      toggleBtn.innerHTML = "Show Data Table";
+      toggleBtn.setAttribute("aria-expanded", false);
+      toggleBtn.classList.remove("active");
+    } else {
+      toggleBtn.setAttribute("aria-expanded", true);
+      toggleBtn.innerHTML = "Hide Data Table";
+      table.style.display = "block";
+      toggleBtn.classList.add("active");
+    }
+  });
+}

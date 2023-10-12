@@ -138,3 +138,83 @@ h2 + p {
 .bold {
   font-weight: bold;
 }
+
+button {
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  color: rgb(60, 66, 87);
+  background-color: rgb(255, 255, 255);
+  box-shadow:
+    rgb(0 0 0 / 0%) 0px 0px 0px 0px,
+    rgb(0 0 0 / 0%) 0px 0px 0px 0px,
+    rgb(0 0 0 / 12%) 0px 1px 1px 0px,
+    rgb(60 66 87 / 16%) 0px 0px 0px 1px,
+    rgb(0 0 0 / 0%) 0px 0px 0px 0px,
+    rgb(0 0 0 / 0%) 0px 0px 0px 0px,
+    rgb(60 66 87 / 8%) 0px 2px 5px 0px;
+  border-radius: 4px;
+  padding: 4px 8px;
+  display: inline-block;
+  min-height: 28px;
+  transition:
+    background-color 0.24s,
+    box-shadow 0.24s;
+  &:hover {
+    box-shadow:
+      rgb(0 0 0 / 0%) 0px 0px 0px 0px,
+      rgb(0 0 0 / 0%) 0px 0px 0px 0px,
+      rgb(0 0 0 / 12%) 0px 1px 1px 0px,
+      rgb(60 66 87 / 16%) 0px 0px 0px 1px,
+      rgb(0 0 0 / 0%) 0px 0px 0px 0px,
+      rgb(60 66 87 / 8%) 0px 3px 9px 0px,
+      rgb(60 66 87 / 8%) 0px 2px 5px 0px;
+  }
+}
+
+button:focus-visible {
+  border: 2px solid darkslateblue;
+}
+
+button.active:focus-visible {
+  border: 1px solid white;
+  outline: 2px solid darkslateblue;
+}
+
+button.active {
+  background: darkslateblue;
+  color: white;
+}
+
+#data-table-container {
+  width: 98%;
+  overflow-x: auto;
+  margin: 0.5em auto 1em;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  font-size: 0.6em;
+  margin: 0 auto;
+
+  td,
+  th {
+    border: 1px solid #ccc;
+    font-weight: 500;
+  }
+
+  th {
+    background: #eee;
+  }
+}
+
+#data-table-toggle {
+  font-size: 0.7em;
+  margin: 1em auto;
+  display: block;
+}
+
+h3 {
+  text-align: center;
+}

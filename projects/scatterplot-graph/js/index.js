@@ -1,7 +1,12 @@
 import * as d3 from "d3";
 import unsortedData from "../../../data/cycling-doping-times.json";
 import { domLoaded } from "../../../shared/utils";
-import { getMargins, getDimensions } from "./utils";
+import {
+  getMargins,
+  getDimensions,
+  createDataTable,
+  setDataTableToggleButton,
+} from "./utils";
 import Tooltip from "./tooltip";
 d3; // use full d3 import to prevent tree shaking
 
@@ -73,6 +78,7 @@ d3; // use full d3 import to prevent tree shaking
     .attr("data-xvalue", (d) => new Date(`${d.Year}-01-01T00:00:00.000Z`))
     .attr("data-yvalue", (d) => new Date(`2000-01-01T00:${d.Time}.000Z`))
     .attr("r", 8.5)
+    .attr("role", "graphics-symbol")
     .attr(
       "aria-label",
       (d) =>
@@ -107,4 +113,7 @@ d3; // use full d3 import to prevent tree shaking
     `,
     )
     .attr();
+
+  createDataTable(data);
+  setDataTableToggleButton();
 })();
