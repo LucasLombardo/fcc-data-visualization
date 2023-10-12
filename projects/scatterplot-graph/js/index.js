@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import data from "../../../data/cycling-doping-times.json";
+import unsortedData from "../../../data/cycling-doping-times.json";
 import { domLoaded } from "../../../shared/utils";
 import { getMargins, getDimensions } from "./utils";
 import Tooltip from "./tooltip";
@@ -8,6 +8,7 @@ d3; // use full d3 import to prevent tree shaking
 (async () => {
   await domLoaded();
   const svg = d3.select("#scatterplot-svg");
+  const data = unsortedData.sort((a, b) => a.Year - b.Year);
 
   /* SETUP */
   const margin = getMargins(svg);
@@ -16,6 +17,14 @@ d3; // use full d3 import to prevent tree shaking
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
   let tooltip;
+  const showTooltip = (event, d) => {
+    if (!tooltip) tooltip = new Tooltip({ canvas });
+    const {
+      cx: { value: x },
+      cy: { value: y },
+    } = event.target.attributes;
+    tooltip.show({ width, d, x, y });
+  };
 
   /* Y SCALE / AXIS */
   const [minY, maxY] = [
@@ -64,16 +73,23 @@ d3; // use full d3 import to prevent tree shaking
     .attr("data-xvalue", (d) => new Date(`${d.Year}-01-01T00:00:00.000Z`))
     .attr("data-yvalue", (d) => new Date(`2000-01-01T00:${d.Time}.000Z`))
     .attr("r", 8.5)
-    .on("mouseover", function (event, d) {
-      if (!tooltip) tooltip = new Tooltip({ canvas });
-      const {
-        cx: { value: x },
-        cy: { value: y },
-      } = event.target.attributes;
-      tooltip.show({ width, height, d, x, y });
-    })
-    .on("mouseout", function () {
+    .attr(
+      "aria-label",
+      (d) =>
+        `data point, ${d.Doping ? "doping" : "no doping"}, ${d.Name} ${
+          d.Nationality
+        }, Year: ${d.Year}, Time: ${d.Time}${d.Doping ? `, ${d.Doping}` : ""}`,
+    )
+    .on("mouseover", showTooltip)
+    .on("focus", showTooltip)
+    .on("blur", function () {
       tooltip.hide();
+    })
+    .on("mouseout", function (event) {
+      if (document.activeElement !== event.target) tooltip.hide();
+    })
+    .on("keydown", function (event) {
+      if (event.key === "Escape") tooltip.hide();
     });
 
   /* LEGEND */

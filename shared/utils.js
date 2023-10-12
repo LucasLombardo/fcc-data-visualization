@@ -23,4 +23,12 @@ const domLoaded = () => new Promise((resolve) =>
   document.addEventListener("DOMContentLoaded", resolve)
 );
 
-export { sleep, dateToQuarter, formatNumBillions, chunkArray, domLoaded };
+const getTextWidth = (text, font, fontSize)  => {
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  context.font = font || getComputedStyle(document.body).font;
+  context.fontSize = fontSize || getComputedStyle(document.body).fontSize;
+  return context.measureText(text).width;
+}
+
+export { sleep, dateToQuarter, formatNumBillions, chunkArray, domLoaded, getTextWidth };

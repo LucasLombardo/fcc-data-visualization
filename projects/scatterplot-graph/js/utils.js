@@ -21,3 +21,11 @@ export function getDimensions(d3El, margin) {
     fullHeight,
   };
 }
+
+export function splitSentance(text) {
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] === " " && text.length / 2 < i) {
+      return [text.slice(0, i), text.slice(i + 1)];
+    }
+  }
+}
