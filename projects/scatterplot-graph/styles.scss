@@ -67,7 +67,12 @@ h2 + p {
   }
 }
 
+svg {
+  pointer-events: none;
+}
+
 .circle {
+  pointer-events: all;
   stroke-width: 1px;
   stroke: black;
 

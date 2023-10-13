@@ -82,11 +82,16 @@ export function setDataTableToggleButton() {
 }
 
 export function setSvgMeta(svg) {
-  svg
-    .append("title")
-    .html(
-      "Scatterplot of 35 Fastest professional cycling times up Alpe d'Huez and whether the times were achieved with doping or not.",
-    );
+  const titleText =
+    "Scatterplot of 35 Fastest professional cycling times up Alpe d'Huez and whether the times were achieved with doping or not.";
+  const title = svg.append("title").html(titleText);
+  // Avoid title tooltip showing on hover
+  svg.on("mouseover", () => {
+    title.html("");
+  });
+  svg.on("mouseout", () => {
+    title.html(titleText);
+  });
   svg
     .append("desc")
     .html(
