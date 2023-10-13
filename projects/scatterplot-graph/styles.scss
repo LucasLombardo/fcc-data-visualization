@@ -15,8 +15,9 @@ body {
   padding: 1em 2em;
   min-width: 340px;
 
-  @media (max-width: 400px) {
-    padding: 0.5em 0em;
+  @media (max-width: 480px) {
+    padding: 0.5em;
+    width: 90vw;
   }
 }
 
@@ -33,7 +34,7 @@ h1 {
   font-size: 1.2em;
   margin: 1.2em 0 0.4em;
 
-  @media (max-width: 400px) {
+  @media (max-width: 480px) {
     text-align: center;
   }
 }
@@ -41,7 +42,7 @@ h1 {
 h1 + p {
   margin: 0 0 1em;
 
-  @media (max-width: 400px) {
+  @media (max-width: 480px) {
     text-align: center;
   }
 }
@@ -216,5 +217,11 @@ table {
 }
 
 h3 {
+  font-size: 0.9em;
+  font-weight: 500;
   text-align: center;
+
+  @media (max-width: 480px) {
+    font-size: 0.7em;
+  }
 }

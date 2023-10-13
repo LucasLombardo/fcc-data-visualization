@@ -1,3 +1,5 @@
+import { sleep } from "../../../shared/utils";
+
 export function getMargins(d3El) {
   const [top, right, bottom, left] = d3El
     .attr("data-margins")
@@ -100,4 +102,12 @@ export function setSvgMeta(svg) {
       <path d="M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2" />
     </pattern>
   `);
+}
+
+export async function minimizeFCCTest() {
+  await sleep(150);
+  const root = document.querySelector("#fcc_test_suite_wrapper").shadowRoot;
+  if (root.querySelector(".fcc_hamburger.transform_top")) {
+    root.querySelector("#fcc_toggle").click();
+  }
 }

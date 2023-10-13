@@ -7,12 +7,14 @@ import {
   createDataTable,
   setDataTableToggleButton,
   setSvgMeta,
+  minimizeFCCTest,
 } from "./utils";
 import Tooltip from "./tooltip";
 d3; // use full d3 import to prevent tree shaking
 
 (async () => {
   await domLoaded();
+  minimizeFCCTest();
   const svg = d3.select("#scatterplot-svg");
   const data = unsortedData.sort((a, b) => a.Year - b.Year);
 
