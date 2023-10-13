@@ -78,3 +78,26 @@ export function setDataTableToggleButton() {
     }
   });
 }
+
+export function setSvgMeta(svg) {
+  svg
+    .append("title")
+    .html(
+      "Scatterplot of 35 Fastest professional cycling times up Alpe d'Huez and whether the times were achieved with doping or not.",
+    );
+  svg
+    .append("desc")
+    .html(
+      "Scatterplot shows a general trend of slower times from 1994 to 2014, with most of the fastest times being marked as having doping alllegations and most of the recent times without doping allegations being the slowest.",
+    );
+  svg.append("defs").html(`
+    <pattern
+      id="striped-fill"
+      patternUnits="userSpaceOnUse"
+      width="4"
+      height="4"
+    >
+      <path d="M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2" />
+    </pattern>
+  `);
+}

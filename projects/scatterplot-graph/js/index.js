@@ -6,6 +6,7 @@ import {
   getDimensions,
   createDataTable,
   setDataTableToggleButton,
+  setSvgMeta,
 } from "./utils";
 import Tooltip from "./tooltip";
 d3; // use full d3 import to prevent tree shaking
@@ -18,6 +19,7 @@ d3; // use full d3 import to prevent tree shaking
   /* SETUP */
   const margin = getMargins(svg);
   const { width, height } = getDimensions(svg, margin);
+  setSvgMeta(svg);
   const canvas = svg
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
