@@ -1,6 +1,6 @@
 import data from "../../../data/global-temperatures.json";
 import * as d3 from "d3";
-import { MONTHS, SIZES } from "./constants";
+import { MONTHS, SIZES, COLORS } from "./constants";
 
 const { SVG: s, MARGINS: m, CANVAS: c } = SIZES;
 const svg = d3
@@ -15,6 +15,19 @@ svg
 const canvas = svg
   .append("g")
   .attr("transform", `translate(${m.left}, ${m.top})`);
+
+const [min, max] = [
+  d3.min(data.monthlyVariance, (d) => d.variance),
+  d3.max(data.monthlyVariance, (d) => d.variance),
+];
+
+const breakpoints = [...Array(9)].map(
+  (_, i) => max - ((i + 1) * (max - min)) / COLORS.length
+);
+
+const getColor = (variance)
+console.log(breakpoints);
+console.log(min,max);
 
 const yScale = d3
   .scaleBand()
