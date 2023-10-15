@@ -2,6 +2,7 @@ import data from "../../../data/global-temperatures.json";
 import * as d3 from "d3";
 import { MONTHS, SIZES, COLORS } from "./constants";
 import { createLegend } from "./createLegend";
+d3;
 
 const { SVG: s, MARGINS: m, CANVAS: c } = SIZES;
 const svg = d3

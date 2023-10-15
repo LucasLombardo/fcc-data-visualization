@@ -1,5 +1,6 @@
 import * as d3 from "d3";
 import { LEGEND_SIZES, COLORS } from "./constants";
+d3;
 
 export function createLegend(breakpoints, min, max) {
   const { LEGEND_SVG: s, LEGEND_MARGINS: m, LEGEND_CANVAS: c } = LEGEND_SIZES;
