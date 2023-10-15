@@ -1,6 +1,7 @@
 import data from "../../../data/global-temperatures.json";
 import * as d3 from "d3";
 import { MONTHS, SIZES, COLORS } from "./constants";
+import { createLegend } from "./createLegend";
 
 const { SVG: s, MARGINS: m, CANVAS: c } = SIZES;
 const svg = d3
@@ -20,14 +21,18 @@ const [min, max] = [
   d3.min(data.monthlyVariance, (d) => d.variance),
   d3.max(data.monthlyVariance, (d) => d.variance),
 ];
-
-const breakpoints = [...Array(9)].map(
-  (_, i) => max - ((i + 1) * (max - min)) / COLORS.length
+const colorBreakpoints = [...Array(9)].map(
+  (_, i) => max - ((i + 1) * (max - min)) / COLORS.length,
 );
-
-const getColor = (variance)
-console.log(breakpoints);
-console.log(min,max);
+const colorScale = (variance) => {
+  for (let i = 0; i < colorBreakpoints.length; i++) {
+    if (variance >= colorBreakpoints[i]) {
+      return COLORS[i];
+    }
+  }
+  return COLORS[colorBreakpoints.length];
+};
+createLegend(colorBreakpoints, min, max);
 
 const yScale = d3
   .scaleBand()
@@ -60,6 +65,7 @@ canvas
   .attr("y", (d) => yScale(d.month - 1))
   .attr("width", xScale.bandwidth())
   .attr("height", yScale.bandwidth())
+  .attr("fill", (d) => colorScale(d.variance))
   .attr("data-month", (d) => d.month - 1)
   .attr("data-year", (d) => d.year)
   .attr("data-temp", (d) => d.variance);
