@@ -10,17 +10,51 @@ h1 {
 }
 
 svg {
-  border: 1px solid #ddd;
+  // border: 1px solid #ddd;
   display: block;
   margin: 0 auto;
 
-  .cell {
-    // stroke: black;
-    // fill: none;
-    // stroke-width: 1px;
+  .cell:hover {
+    stroke: black;
+    stroke-width: 1px;
   }
 }
 
+#heat-map {
+  width: 1200px;
+}
+
+.heat-map-wrapper {
+  overflow-x: auto;
+  border-right: 1px solid #666;
+  border: 1px solid #666;
+  border-top: none;
+  padding-bottom: 1em;
+}
+
 #legend {
-  width: 400px;
+  width: 260px;
+}
+
+.legend-wrapper {
+  border: 1px solid #666;
+  border-bottom: none;
+  padding-top: 1em;
+}
+
+#tooltip {
+  polygon {
+    fill: white;
+    stroke: #444;
+    stroke-width: 1px;
+  }
+
+  tspan:first-of-type {
+    font-size: 0.57em;
+    font-weight: 500;
+  }
+
+  tspan {
+    font-size: 0.7em;
+  }
 }

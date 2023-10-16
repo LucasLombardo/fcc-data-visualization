@@ -56,6 +56,15 @@ canvas
   .call(xAxis)
   .attr("transform", `translate(0,${c.height})`);
 
+const tooltip = svg.append("g").attr("id", "tooltip").attr("display", "none");
+tooltip
+  .append("polygon")
+  .attr("points", "0,0 0,50 50,50 50,26.5 52.5,25 50,23.5 50,0");
+const tooltipText = tooltip.append("text").attr("id", "tooltip-text");
+const shortMonths = MONTHS.map((m) => {
+  return m === "September" ? "Sept" : m.slice(0, 3);
+});
+
 canvas
   .selectAll(".cell")
   .data(data.monthlyVariance)
@@ -69,4 +78,27 @@ canvas
   .attr("fill", (d) => colorScale(d.variance))
   .attr("data-month", (d) => d.month - 1)
   .attr("data-year", (d) => d.year)
-  .attr("data-temp", (d) => d.variance);
+  .attr("data-temp", (d) => d.variance)
+  .on("mouseover", (_, d) => {
+    tooltip
+      .attr("display", "block")
+      .attr("data-year", d.year)
+      .attr(
+        "transform",
+        `translate(${xScale(d.year) + 11}, ${yScale(d.month - 1)})`,
+      );
+    tooltipText.html(`
+        <tspan x="27" y="10" dominant-baseline="middle" text-anchor="middle">${
+          shortMonths[d.month - 1]
+        } ${d.year}</tspan>
+        <tspan x="27" y="25" dominant-baseline="middle" text-anchor="middle">${
+          Math.round(d.variance * 100) / 100
+        }</tspan>
+        <tspan x="27" y="40" dominant-baseline="middle" text-anchor="middle">(${
+          Math.round((d.variance + data.baseTemperature) * 100) / 100
+        })</tspan>
+    `);
+  })
+  .on("mouseout", () => {
+    tooltip.attr("display", "none");
+  });

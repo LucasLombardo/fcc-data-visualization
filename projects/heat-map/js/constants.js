@@ -13,8 +13,8 @@ export const MONTHS = [
   "December",
 ];
 
-const MARGINS = { top: 20, right: 20, bottom: 25, left: 65 };
-const SVG = { width: 800, height: 400 };
+const MARGINS = { top: 12, right: 20, bottom: 25, left: 65 };
+const SVG = { width: 800, height: 300 };
 const CANVAS = {
   width: SVG.width - MARGINS.left - MARGINS.right,
   height: SVG.height - MARGINS.top - MARGINS.bottom,
