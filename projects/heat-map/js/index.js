@@ -2,6 +2,7 @@ import data from "../../../data/global-temperatures.json";
 import * as d3 from "d3";
 import { MONTHS, SIZES, COLORS } from "./constants";
 import { createLegend } from "./createLegend";
+import { createDataTable } from "./createDataTable";
 d3;
 
 const { SVG: s, MARGINS: m, CANVAS: c } = SIZES;
@@ -102,3 +103,5 @@ canvas
   .on("mouseout", () => {
     tooltip.attr("display", "none");
   });
+
+createDataTable(data.monthlyVariance);

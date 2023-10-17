@@ -10,7 +10,6 @@ h1 {
 }
 
 svg {
-  // border: 1px solid #ddd;
   display: block;
   margin: 0 auto;
 
@@ -56,5 +55,52 @@ svg {
 
   tspan {
     font-size: 0.7em;
+  }
+}
+
+.data-table-wrapper {
+  padding: 1em 0;
+  overflow-x: auto;
+  border-right: 1px solid #666;
+  border: 1px solid #666;
+  border-top: none;
+  position: relative;
+  position: relative;
+}
+
+table {
+  border-spacing: 0;
+  font-size: 0.6em;
+  margin: 0 auto;
+
+  td,
+  th {
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    font-weight: 500;
+  }
+
+  thead th {
+    border-top: 1px solid #ccc;
+  }
+  thead th,
+  td {
+    padding: 0.2em;
+    text-align: right;
+  }
+
+  th {
+    background: #eee;
+  }
+  tbody th,
+  thead th:first-of-type {
+    position: sticky;
+    left: 0;
+    border-left: 1px solid #ccc;
+  }
+  thead th:first-of-type {
+    background: white;
+    border-top: none;
+    border-left: none;
   }
 }
